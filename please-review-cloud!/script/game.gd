@@ -30,7 +30,6 @@ func _ready() -> void:
 func _spawn_cloud() -> void:
 	var new_char = fall_char_scene.instantiate()
 	new_char.position = Vector2(randf_range(min_x, max_x), spawn_y)
-	# Increase fall speed as score increases
 	new_char.fall_speed = base_fall_speed + (score * speed_increase_per_point)
 	add_child(new_char)
 
@@ -40,11 +39,9 @@ func _on_spawn_timer_timeout() -> void:
 		
 	_spawn_cloud()
 	
-	# Spawn an extra cloud at the same time as score climbs higher
 	if score >= 10 and randf() < minf(0.15 + (score - 10) * 0.02, 0.65):
 		_spawn_cloud()
 	
-	# Decrease spawn interval as score increases so more clouds fall
 	var next_interval := maxf(min_spawn_interval, base_spawn_interval - (score * 0.06))
 	spawn_timer.wait_time = next_interval
 
