@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dp340wjnigofd"]
+
+[ext_resource type="Texture2D" uid="uid://c1fkqh75l16yr" path="res://asset/Play.png" id="1_lnxie"]
+[ext_resource type="Script" uid="uid://bdf1u7linm3ey" path="res://script/main_menu.gd" id="1_tf3dk"]
+[ext_resource type="Texture2D" uid="uid://drowniblay22r" path="res://asset/Leaderboard.png" id="2_sks6p"]
+[ext_resource type="Texture2D" uid="uid://sd64ancucevy" path="res://asset/Cloud.webp" id="3_lulne"]
+[ext_resource type="Texture2D" uid="uid://cr7qqgabl3fwb" path="res://asset/embassy-passport.webp" id="4_tf3dk"]
+
+[node name="MainMenu" type="Control" unique_id=647813008]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tf3dk")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1207054579]
+offset = Vector2(575, 320)
+
+[node name="Cloud" type="Sprite2D" parent="." unique_id=723979295]
+position = Vector2(172.99998, 211.75)
+scale = Vector2(0.35156256, 0.36035156)
+texture = ExtResource("3_lulne")
+
+[node name="Cloud" type="Sprite2D" parent="Cloud" unique_id=1207637146]
+position = Vector2(2397.6587, 738.6229)
+scale = Vector2(1.0869845, 0.9218803)
+texture = ExtResource("3_lulne")
+
+[node name="EmbassyPassport" type="Sprite2D" parent="." unique_id=469304215]
+position = Vector2(187, 472)
+scale = Vector2(0.5109091, 0.45762712)
+texture = ExtResource("4_tf3dk")
+
+[node name="EmbassyPassport" type="Sprite2D" parent="EmbassyPassport" unique_id=1563274138]
+position = Vector2(1522.7759, -532.0926)
+scale = Vector2(0.51245564, 0.6037037)
+texture = ExtResource("4_tf3dk")
+
+[node name="Title" type="Label" parent="." unique_id=1691114609]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 140.0
+offset_right = 782.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.8221451, 0.55857867, 0.16178957, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/font_size = 42
+text = "Please Review Cloud!!"
+horizontal_alignment = 1
+
+[node name="Play" type="TextureButton" parent="." unique_id=1600797449]
+layout_mode = 0
+offset_left = 485.0
+offset_top = 240.0
+offset_right = 645.0
+offset_bottom = 294.0
+texture_normal = ExtResource("1_lnxie")
+stretch_mode = 5
+
+[node name="Leaderboard" type="TextureButton" parent="." unique_id=357974035]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 325.0
+offset_right = 695.0
+offset_bottom = 379.0
+texture_normal = ExtResource("2_sks6p")
+stretch_mode = 5
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Leaderboard" to="." method="_on_leaderboard_pressed"]

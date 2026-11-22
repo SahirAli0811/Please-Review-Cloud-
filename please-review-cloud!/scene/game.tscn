@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://c1w7xmj201a4a"]
+
+[ext_resource type="Texture2D" uid="uid://dwnite0xjytps" path="res://asset/bg.jpeg" id="1_5kiuu"]
+[ext_resource type="Script" uid="uid://dvjpvgvfq2hmc" path="res://script/game.gd" id="1_xwcet"]
+[ext_resource type="Texture2D" uid="uid://dwkkca2t8a6qp" path="res://asset/lava.jpg" id="2_dbls1"]
+[ext_resource type="PackedScene" uid="uid://dj6uter5lowfg" path="res://scene/basket.tscn" id="4_xwcet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crggm"]
+size = Vector2(1200, 90)
+
+[node name="Game" type="Node2D" unique_id=1196320173]
+script = ExtResource("1_xwcet")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=146217177]
+offset = Vector2(575, 320)
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=575539747]
+position = Vector2(562, 346)
+scale = Vector2(1.8377581, 1.7522124)
+texture = ExtResource("1_5kiuu")
+
+[node name="Lava" type="Sprite2D" parent="." unique_id=1655263344]
+position = Vector2(567.5, 608)
+scale = Vector2(1.45875, 0.81927764)
+texture = ExtResource("2_dbls1")
+
+[node name="LavaArea" type="Area2D" parent="." unique_id=1444460236]
+position = Vector2(576, 610)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaArea" unique_id=738861873]
+shape = SubResource("RectangleShape2D_crggm")
+
+[node name="Basket" parent="." unique_id=1265661535 instance=ExtResource("4_xwcet")]
+position = Vector2(576, 511)
+scale = Vector2(0.64, 0.5317746)
+
+[node name="Score" type="Label" parent="." unique_id=784537655]
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 300.0
+offset_bottom = 86.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 44
+text = "Score: 0"
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=520294611]
+
+[node name="GameOverUI" type="CanvasLayer" parent="." unique_id=1093933633]
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverUI" unique_id=1588458552]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -105.0
+offset_right = 160.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverUI/PanelContainer" unique_id=881122334]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverUI/PanelContainer/MarginContainer" unique_id=564394308]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="GameOverUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=616736070]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="GameOverUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=131232554]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="NameInput" type="LineEdit" parent="GameOverUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=943600685]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Enter your name"
+alignment = 1
+
+[node name="SubmitButton" type="Button" parent="GameOverUI/PanelContainer/MarginContainer/VBoxContainer" unique_id=1508296645]
+layout_mode = 2
+text = "Submit Your Score"
+
+[connection signal="area_entered" from="LavaArea" to="." method="_on_lava_area_entered"]
+[connection signal="area_entered" from="Basket" to="." method="_on_basket_area_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="GameOverUI/PanelContainer/MarginContainer/VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cm5kgpuvv2g0i"]
+
+[ext_resource type="Texture2D" uid="uid://cr7qqgabl3fwb" path="res://asset/embassy-passport.webp" id="1_mhtso"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1o0x"]
+size = Vector2(175, 242)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=263024805]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=602696964]
+position = Vector2(-34.5, 12)
+shape = SubResource("RectangleShape2D_v1o0x")
+
+[node name="EmbassyPassport" type="Sprite2D" parent="." unique_id=310569383]
+position = Vector2(-40, 7.0000076)
+scale = Vector2(0.42909086, 0.4474576)
+texture = ExtResource("1_mhtso")

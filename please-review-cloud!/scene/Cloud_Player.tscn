@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cst3eyubje2j0"]
+
+[ext_resource type="Texture2D" uid="uid://sd64ancucevy" path="res://asset/Cloud.webp" id="1_0pv5d"]
+[ext_resource type="Script" uid="uid://v4c6ibxkw2uu" path="res://script/cloud_player.gd" id="1_e4u7k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1o0x"]
+size = Vector2(70, 72)
+
+[node name="CloudPlayer" type="Area2D" unique_id=547399921 groups=["falling"]]
+script = ExtResource("1_e4u7k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=13176882]
+shape = SubResource("RectangleShape2D_v1o0x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=619608711]
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("1_0pv5d")
